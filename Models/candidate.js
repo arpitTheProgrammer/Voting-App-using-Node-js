@@ -1,18 +1,36 @@
 const mongoose = require('mongoose')
 
 const candidateSchema = new mongoose.Schema({
-    name:{
+    name: {
         type: String,
         require: true
     },
-    email:{
+    party: {
         type: String,
         require: true,
         unique: true
     },
-    password: {
+    age: {
         type: String,
         require: true
+    },
+    vote: [
+        {
+            user: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "User",
+                require: true,
+            },
+            votedAt: {
+                type: Date,
+                default: Date.now()
+            }
+        },
+
+    ],
+    voteCount: {
+        type:Number,
+        default: 0
     }
 })
 

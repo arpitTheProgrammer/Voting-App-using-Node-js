@@ -24,3 +24,9 @@ Routes
 
 // Day - 1
 setup Modals and server
+
+// Day - 2
+preparing signup page
+
+// Day - 3 
+Fixing some Bugs in signup page
