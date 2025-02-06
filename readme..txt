@@ -30,3 +30,7 @@ preparing signup page
 
 // Day - 3 
 Fixing some Bugs in signup page
+
+// Day - 4 
+Fixing signup bugs 
+creating controllers 
