@@ -2,13 +2,13 @@ const User = require('../Models/user')
 
 const HandleSaveUser = async(req, res) =>{
     try {
-        const body = req.body;
+        const { fullName, email, password, age } = req.body;
             console.log((req.body))
         const newUser = await User.create({
-          fullName: body.Fullname,
-          email: body.user_email,
-          password: body.user_pass,
-          age: body.user_age
+          fullName: fullName,
+          email: email,
+          password: password,
+          age: age
         })
         const savedUser = await newUser.save();
         console.log(savedUser);
@@ -20,7 +20,22 @@ const HandleSaveUser = async(req, res) =>{
         // return res.redirect('/')
     }
 
+    const HandleLogin = async(req, res) => {
+        const {email, password} = req.body;
+        console.log(email, password)
+        const user = await User.findOne({email})
+        if(!user){
+            return res.json({message: "USER NOT EXISTS"})
+        }
+        if(user.password !== password){
+            return res.json({message: "Invalid Password"})
+        }
+            user.isLoggedin =  true;
+        return res.json({message: "LOGIN SUCCESSFUL"})
+    }
+
 module.exports = {
-    HandleSaveUser
+    HandleSaveUser,
+    HandleLogin
 }
     

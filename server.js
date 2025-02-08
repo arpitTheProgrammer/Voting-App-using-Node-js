@@ -11,16 +11,15 @@ mongoose.connect("mongodb://127.0.0.1:27017/voting").then(()=>{
     console.log("MONGODB IS CONNECTED")
 })
 
-app.set('view-engine', 'ejs')
-app.set('views', path.resolve('./views'))
+app.set('view engine', 'ejs')
+app.set('views', path.resolve("./views"))
 
 app.use('/', userRoutes)
 app.use(express.json());
 app.use(express.urlencoded({extended: true}))
-// app.get('/', (req, res)=> {
-//     return res.send("Hay")
-// })
-
+app.get('/', (req, res)=>{
+    return res.render('home')
+})
 
 
 app.listen(PORT, () => {

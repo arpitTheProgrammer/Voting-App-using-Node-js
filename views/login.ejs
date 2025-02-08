@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SignUp</title>
+    <title>Login</title>
 </head>
 <style>
     .container-login{
@@ -13,6 +13,11 @@
         /* border: 2px solid black;
         width: 500px; */
         display: grid;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 400px;
+        left: -100px;
     }
     .email-section{
         margin: 10px;
@@ -21,7 +26,7 @@
         height: 40px;
         position: relative;
         margin: 5px;
-        left: 25px;
+        left: 22px;
     }
     .pass-input{
         height: 40px;
@@ -29,51 +34,36 @@
         margin: 5px;
         left: 10px;
     }
-    .name-input{
-        height: 40px;
-        position: relative;
-        margin: 5px;
-        left: 6px;
-    }
     .btn-submit{
         position: relative;
         left: 110px;
-        top: 20px;
+        top: 10px;
         height: 30px;
         width: 100px;
         cursor: pointer;
     }
-    .age-input{
-        height: 40px;
+    .login-head{
         position: relative;
-        margin: 5px;
-        left: 50px;
-        top: 10px;
+        left: 170px;
+        top: -130px;
     }
 </style>
 
 <body>
 </body>
 <div class="container-login">
-    <form action="/signup" method="POST">
-        <div class="fullName-section">
-            <label for="exampleFullName">Full Name</label>
-            <input type="text" name="fullName" placeholder="Enter Your Name" class="name-input">
-        </div>
+    <h1 class="login-head">Login</h1>
+    <form action="/login" method="POST">
         <div class="email-section">
             <label for="exampleInputEmail" class="email-label" >Email</label>
-            <input type="email" name="email" placeholder="Enter email" class="email-input">
+            <input type="email" placeholder="Enter email" class="email-input">
         </div>
         <div class="pass-section">
             <label for="examplePassword">Password</label>
-            <input type="password" name="password" placeholder="Enter Password" class="pass-input">
+            <input type="password" placeholder="Enter Password" class="pass-input">
         </div>
-        <div class="age-section">
-            <label for="examplePassword">age</label>
-            <input type="age" name="age" placeholder="How Old Your are?" class="age-input">
-        </div>
-        <button class="btn-submit" type="submit">SignUp</button>
+        <button class="btn-submit" type="submit">Login</button>
     </form>
 </div>
-    
+
 </html>

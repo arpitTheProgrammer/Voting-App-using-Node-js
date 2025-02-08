@@ -21,6 +21,10 @@ const userSchema = new mongoose.Schema({
     isVoted: {
         type: Boolean,
         default: false
+    },
+    isLoggedin: {
+        type: Boolean,
+        default: false
     }
 }, {timestamps: true});
 
