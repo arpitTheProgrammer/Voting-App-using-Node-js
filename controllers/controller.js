@@ -1,4 +1,5 @@
 const User = require('../Models/user')
+const bcrypt = require('bcrypt')
 
 const HandleSaveUser = async(req, res) =>{
     try {
@@ -27,8 +28,9 @@ const HandleSaveUser = async(req, res) =>{
         if(!user){
             return res.json({message: "USER NOT EXISTS"})
         }
-        if(user.password !== password){
-            return res.json({message: "Invalid Password"})
+        // const isCorrectPass = await bcrypt.compare(password, user.password)
+        if(password != user.password){
+            return res.json({message: "INVALID PASSWORD"})
         }
             user.isLoggedin =  true;
         return res.json({message: "LOGIN SUCCESSFUL"})

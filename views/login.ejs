@@ -50,20 +50,21 @@
 </style>
 
 <body>
+    <div class="container-login">
+        <h1 class="login-head">Login</h1>
+        <form action="/login" method="POST">
+            <div class="email-section">
+                <label for="exampleInputEmail" class="email-label" >Email</label>
+                <input name="email" type="email" placeholder="Enter email" class="email-input">
+            </div>
+            <div class="pass-section">
+                <label for="examplePassword">Password</label>
+                <input name="password" type="password" placeholder="Enter Password" class="pass-input">
+            </div>
+            <button class="btn-submit" type="submit">Login</button>
+        </form>
+    </div>
+    
 </body>
-<div class="container-login">
-    <h1 class="login-head">Login</h1>
-    <form action="/login" method="POST">
-        <div class="email-section">
-            <label for="exampleInputEmail" class="email-label" >Email</label>
-            <input type="email" placeholder="Enter email" class="email-input">
-        </div>
-        <div class="pass-section">
-            <label for="examplePassword">Password</label>
-            <input type="password" placeholder="Enter Password" class="pass-input">
-        </div>
-        <button class="btn-submit" type="submit">Login</button>
-    </form>
-</div>
 
 </html>
