@@ -14,6 +14,10 @@ const candidateSchema = new mongoose.Schema({
         type: String,
         require: true
     },
+    password: {
+        type: String,
+        required: true
+    },
     vote: [
         {
             user: {

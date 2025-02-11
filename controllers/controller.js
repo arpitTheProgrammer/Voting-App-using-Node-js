@@ -33,7 +33,7 @@ const HandleSaveUser = async(req, res) =>{
             return res.json({message: "INVALID PASSWORD"})
         }
             user.isLoggedin =  true;
-        return res.json({message: "LOGIN SUCCESSFUL"})
+        return res.render('candidateList')
     }
 
 module.exports = {
