@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container-nav{
+        }
+        .right-section{
+            display: flex;
+            gap: 30px;
+        }
+        .right-section ul{
+            /* border: 1px solid gray;    */
+            /* position: relative; */
+            text-align:  center;
+            height: 30px;
+            width: 400px;
+            font-size: 20px;
+            /* border-radius: 20px; */
+            background-color: rgba(189, 189, 189, 0.169);
+            cursor: pointer;
+        }
+        .right-section ul:hover{
+            box-shadow: 1px 1px 1px 1px black;
+            border-radius: 50px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container-nav">
+        <div class="right-section">
+            <ul id="home" class="Home">Home</ul>
+            <ul id="cand-login" class="cand-login">Login As Candidate</ul>
+            <ul id="voter-login" class="voter-login">Login As Voter</ul>
+        </div>
+    </div>
+</body>
+<script>
+    const home = document.getElementById('home')
+    const candLogin = document.getElementById('cand-login')
+    const voterLogin = document.getElementById('voter-login')
+
+    home.addEventListener('click', ()=>{
+        window.location.href = '/'
+    })
+    voterLogin.addEventListener('click', () => {
+        window.location.href = '/login'
+    })
+</script>
+
+</html>

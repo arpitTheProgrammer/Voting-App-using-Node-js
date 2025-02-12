@@ -14,6 +14,7 @@ router.post("/signup", HandleSaveUser);
 router.post("/login", HandleLogin)
 
 router.get('/signup', (req, res)=> {
+    
     return res.render('signup')
 })
 
