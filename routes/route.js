@@ -1,7 +1,7 @@
 const express = require('express')
 const User = require("../Models/user")
 // const User = require("../Models/user")
-const {HandleSaveUser, HandleLogin} = require('../controllers/controller')
+const {HandleSaveUser, HandleLogin, HandleCandidateRegister} = require('../controllers/controller')
 // import User from '../Models/user.js'
 
 
@@ -13,6 +13,7 @@ router.post("/signup", HandleSaveUser);
 
 router.post("/login", HandleLogin)
 
+router.post("/candidate-register", HandleCandidateRegister)
 router.get('/signup', (req, res)=> {
     
     return res.render('signup')
@@ -22,4 +23,7 @@ router.get('/login', (req, res)=> {
     return res.render('login')
 })
 
+router.get('/candidate-register', (req, res) => {
+    return res.render('candidateRegister')
+})
 module.exports = router;

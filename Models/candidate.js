@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const candidateSchema = new mongoose.Schema({
-    name: {
+    fullName: {
         type: String,
         require: true
     },
@@ -11,7 +11,7 @@ const candidateSchema = new mongoose.Schema({
         unique: true
     },
     age: {
-        type: String,
+        type: Number,
         require: true
     },
     password: {
@@ -38,6 +38,6 @@ const candidateSchema = new mongoose.Schema({
     }
 })
 
-const Candidate = model("Candidate", candidateSchema)
+const Candidate = mongoose.model("Candidate", candidateSchema)
 
 module.exports = Candidate;

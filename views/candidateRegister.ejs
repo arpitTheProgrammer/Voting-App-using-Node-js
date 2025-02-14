@@ -22,11 +22,11 @@
     .email-section{
         margin: 10px;
     }
-    .email-input{
+    .party-input{
         height: 40px;
         position: relative;
         margin: 5px;
-        left: 25px;
+        left: 0px;
     }
     .pass-input{
         height: 40px;
@@ -60,14 +60,14 @@
 <body>
 </body>
 <div class="container-login">
-    <form action="/signup" method="POST">
+    <form action="/candidate-register" method="POST">
         <div class="fullName-section">
             <label for="exampleFullName">Full Name</label>
             <input type="text" name="fullName" placeholder="Enter Your Name" class="name-input">
         </div>
-        <div class="email-section">
-            <label for="exampleInputEmail" class="email-label" >Email</label>
-            <input type="email" name="email" placeholder="Enter email" class="email-input">
+        <div class="party-section">
+            <label for="examplePartyName" class="party-label" >Party Name</label>
+            <input type="party" name="party" placeholder="Enter your party name" class="party-input">
         </div>
         <div class="pass-section">
             <label for="examplePassword">Password</label>

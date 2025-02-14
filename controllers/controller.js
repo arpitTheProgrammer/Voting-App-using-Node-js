@@ -1,4 +1,5 @@
 const User = require('../Models/user')
+const Candidate = require('../Models/candidate')
 const bcrypt = require('bcrypt')
 
 const HandleSaveUser = async(req, res) =>{
@@ -21,6 +22,24 @@ const HandleSaveUser = async(req, res) =>{
         // return res.redirect('/')
     }
 
+
+    const HandleCandidateRegister = async(req, res)=> {
+        try{
+        const {fullName, party, password, age} = req.body;
+        console.log(req.body)
+        const newCandidate = await Candidate.create({
+            fullName: fullName,
+            party: party,
+            password: password,
+            age: age
+        })
+        const saveCandidate = newCandidate.save()
+        console.log(saveCandidate)
+        return res.json({message: "SUCCESS"})
+    } catch(error){
+        return res.json({msg: "Failed To create Candidate"})
+    }
+    }
     const HandleLogin = async(req, res) => {
         const {email, password} = req.body;
         console.log(email, password)
@@ -38,6 +57,7 @@ const HandleSaveUser = async(req, res) =>{
 
 module.exports = {
     HandleSaveUser,
-    HandleLogin
+    HandleLogin,
+    HandleCandidateRegister
 }
     
