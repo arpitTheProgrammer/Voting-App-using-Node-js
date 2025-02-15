@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<style>
+    .container-login{
+        position: relative;
+        top: 30px;
+        /* border: 2px solid black;
+        width: 500px; */
+        display: grid;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 400px;
+        left: -100px;
+    }
+    /* .email-section{
+        margin: 10px;
+    } */
+    .email-input{
+        height: 40px;
+        position: relative;
+        margin: 5px;
+        left: 0px;
+    }
+    .pass-input{
+        height: 40px;
+        position: relative;
+        margin: 5px;
+        left: 10px;
+    }
+    .btn-submit{
+        position: relative;
+        left: 110px;
+        top: 10px;
+        height: 30px;
+        width: 100px;
+        cursor: pointer;
+    }
+    .login-head{
+        position: relative;
+        left: 170px;
+        top: -130px;
+    }
+    .registerBtn{
+        position: relative;
+        text-align: center;
+        top: -90px;
+        left: -30px;
+    }
+    .registerBtn span{
+        color: blue;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <%- include('./partials/Navbar.ejs')%>
+    <div class="container-login">
+        <h1 class="login-head">Login</h1>
+        <form action="/candidate-login" method="POST">
+            <div class="email-section">
+                <label for="exampleInputEmail" class="email-label" >Party Name</label>
+                <input name="party" type="party" placeholder="Enter Party Name" class="email-input">
+            </div>
+            <div class="pass-section">
+                <label for="examplePassword">Password</label>
+                <input name="password" type="password" placeholder="Enter Password" class="pass-input">
+            </div>
+            <button class="btn-submit" type="submit">Login</button>
+        </form>
+    </div>
+    <div class="registerBtn">
+        <p>Click here to <span id="HandleRegister"><i> Register </i></span> yourself</p>
+    </div>
+    
+</body>
+    <script>
+        const registerBtn = document.getElementById('HandleRegister')
+
+        registerBtn.addEventListener('click', () => {
+            window.location.href = "/candidate-register"
+        })
+    </script>
+</html>

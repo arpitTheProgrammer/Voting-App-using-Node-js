@@ -1,6 +1,6 @@
 const User = require('../Models/user')
 const Candidate = require('../Models/candidate')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
 
 const HandleSaveUser = async(req, res) =>{
     try {
@@ -54,10 +54,23 @@ const HandleSaveUser = async(req, res) =>{
             user.isLoggedin =  true;
         return res.render('candidateList')
     }
-
+    const HandleCandidateLogin = async(req, res) => {
+        const {party, password} = req.body;
+        console.log(party, password);
+        const candidates = await Candidate.findOne({party})
+        if(!candidates){
+            return res.json({message: "Candidate Not exist"})
+        } 
+        if(password != candidates.password){
+            return res.json({message: "INCORRECT PASSWORD"})
+        }
+        candidates.isLoggedIn =  true;
+        return res.json({message: "LOGIN SUCCESS"})
+    }
 module.exports = {
     HandleSaveUser,
     HandleLogin,
-    HandleCandidateRegister
+    HandleCandidateRegister,
+    HandleCandidateLogin
 }
     

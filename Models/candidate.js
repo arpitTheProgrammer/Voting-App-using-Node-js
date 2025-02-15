@@ -18,6 +18,10 @@ const candidateSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    isLoggedIn: {
+        type: Boolean,
+        default: false
+    },
     vote: [
         {
             user: {
