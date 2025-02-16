@@ -47,6 +47,16 @@
         left: 170px;
         top: -130px;
     }
+    .registerBtn{
+        position: relative;
+        text-align: center;
+        top: -90px;
+        left: -30px;
+    }
+    .registerBtn span{
+        color: blue;
+        cursor: pointer;
+    }
 </style>
 
 <body>
@@ -65,7 +75,16 @@
             <button class="btn-submit" type="submit">Login</button>
         </form>
     </div>
+    <div class="registerBtn">
+        <p>Click here to <span id="HandleRegister"><i> Register </i></span> yourself</p>
+    </div>
     
 </body>
 
+<script>
+    const registerBtn = document.getElementById('HandleRegister')
+    registerBtn.addEventListener('click', () => {
+        window.location.href = "/signup"
+    })
+</script>
 </html>
