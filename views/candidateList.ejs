@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <style>
-    .navBar{
+    .navBar {
         /* border: 1px solid gray; */
         height: 50px;
         background-color: rgba(197, 197, 197, 0.337);
         border-radius: 20px;
     }
-    .logout{
+
+    .logout {
         float: right;
         position: relative;
         top: 10px;
@@ -22,25 +24,116 @@
         border-radius: 10px;
         border: none;
     }
-    .logout:hover{
+
+    .logout:hover {
         cursor: pointer;
         background-color: black;
         color: white;
         border-radius: 20px;
     }
+
+    .container-after-login {
+        display: flex;
+        gap: 100px;
+        justify-content: center;
+        position: relative;
+        top: 80px;
+        /* border: 2px solid black; */
+        width: 1000px;
+        left: 150px;
+        flex-wrap: wrap;
+    }
+
+    .boxes {
+        height: 300px;
+        border: 1px solid black;
+        width: 200px;
+        text-align: center;
+        /* display: flex; */
+    }
+
+    .boxes button {
+        height: 48px;
+        width: 100px;
+        background-color: rgba(203, 203, 203, 0.384);
+        border: none;
+        /* display: flex; */
+    }
+
+    .boxes button:hover {
+        cursor: pointer;
+        background-color: black;
+        color: white;
+        border-radius: 20px;
+        box-shadow: 1px 2px 1px 1px black;
+    }
+
+    .item {
+        position: relative;
+        top: 40px;
+    }
 </style>
+
 <body>
     <div class="navBar">
         <button id="HandleLogout" class="logout">Logout</button>
     </div>
     <div class="container-after-login">
-        
+        <div class="boxes">
+            <div class="item">
+                <h2>Modi ji</h2>
+                <p>BJP</p>
+                <h3 id="countVote"><span>vote:-</span>0</h3>
+                <button id="voteBtn">Vote</button>
+            </div>
+        </div>
+        <div class="boxes">
+            <div class="item">
+                <h2>Modi ji</h2>
+                <p>BJP</p>
+                <h3 id="countVote"><span>vote:-</span>0</h3>
+                <button id="voteBtn">Vote</button>
+            </div>
+        </div>
+        <div class="boxes">
+            <div class="item">
+                <h2>Modi ji</h2>
+                <p>BJP</p>
+                <h3 id="countVote"><span>vote:-</span>0</h3>
+                <button id="voteBtn">Vote</button>
+            </div>
+        </div>
+        <div class="boxes">
+            <div class="item">
+                <h2>Modi ji</h2>
+                <p>BJP</p>
+                <h3 id="countVote"><span>vote:-</span>0</h3>
+                <button id="voteBtn">Vote</button>
+            </div>
+        </div>
+        <div class="boxes">
+            <div class="item">
+                <h2>Modi ji</h2>
+                <p>BJP</p>
+                <h3 id="countVote"><span>vote:-</span>0</h3>
+                <button id="voteBtn">Vote</button>
+            </div>
+        </div>
     </div>
 </body>
-    <script>
-        const HandleLogout = document.getElementById('HandleLogout')
-        HandleLogout.addEventListener('click', () => {
-            window.location.href = 'login'
-        })
-    </script>
+<script>
+    const HandleLogout = document.getElementById('HandleLogout')
+    const HandleVote = document.getElementById('voteBtn')
+    const voteCount = document.getElementById('countVote')
+    HandleLogout.addEventListener('click', () => {
+        window.location.href = 'login'
+    })
+    let count = 0;
+    HandleVote.addEventListener('click', () => {
+        count += 1;
+        voteCount.innerHTML = count;
+        console.log(count)
+    })
+</script>
+
 </html>
