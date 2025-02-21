@@ -78,62 +78,74 @@
     <div class="navBar">
         <button id="HandleLogout" class="logout">Logout</button>
     </div>
-    <div class="container-after-login">
-        <div class="boxes">
-            <div class="item">
-                <h2>Modi ji</h2>
-                <p>BJP</p>
-                <h3 id="countVote"><span>vote:-</span>0</h3>
-                <button id="voteBtn">Vote</button>
-            </div>
-        </div>
-        <div class="boxes">
-            <div class="item">
-                <h2>Modi ji</h2>
-                <p>BJP</p>
-                <h3 id="countVote"><span>vote:-</span>0</h3>
-                <button id="voteBtn">Vote</button>
-            </div>
-        </div>
-        <div class="boxes">
-            <div class="item">
-                <h2>Modi ji</h2>
-                <p>BJP</p>
-                <h3 id="countVote"><span>vote:-</span>0</h3>
-                <button id="voteBtn">Vote</button>
-            </div>
-        </div>
-        <div class="boxes">
-            <div class="item">
-                <h2>Modi ji</h2>
-                <p>BJP</p>
-                <h3 id="countVote"><span>vote:-</span>0</h3>
-                <button id="voteBtn">Vote</button>
-            </div>
-        </div>
-        <div class="boxes">
-            <div class="item">
-                <h2>Modi ji</h2>
-                <p>BJP</p>
-                <h3 id="countVote"><span>vote:-</span>0</h3>
-                <button id="voteBtn">Vote</button>
-            </div>
-        </div>
+    <div id="container-candidate" class="container-after-login">
+        
     </div>
 </body>
 <script>
     const HandleLogout = document.getElementById('HandleLogout')
-    const HandleVote = document.getElementById('voteBtn')
-    const voteCount = document.getElementById('countVote')
+
+
     HandleLogout.addEventListener('click', () => {
         window.location.href = 'login'
     })
-    let count = 0;
-    HandleVote.addEventListener('click', () => {
-        count += 1;
-        voteCount.innerHTML = count;
-        console.log(count)
+
+    // Fetching Candidate Data
+    fetch('http://localhost:8000/api/candidate')
+    .then(response => response.json())
+    .then(data => {
+        candidate = data;
+        renderData()
     })
+    .catch(error => console.log("ERROR to Fetch"))
+
+    // Fetchhing Voter data
+    const voterData = async() => {
+        try {
+            const response = await fetch('http://localhost:8000/api/user')
+            const data = await response.json()
+            console.log(data)
+        }
+        catch (error) {
+            console.log("ERROR ", error)
+        }
+    }
+    // voterData()
+    const renderData = () => {
+        const container = document.getElementById('container-candidate')
+        container.innerHTML = ''
+        candidate.forEach(candidate => {
+            const box = document.createElement('div')
+            box.classList.add('boxes')
+            box.innerHTML = `
+                <div class="item">
+                    <h2>${candidate.fullName}</h2>
+                    <p>${candidate.party}</p>
+                    <h3 id="countvote-${candidate._id}"><span>Vote:- </span>${candidate.voteCount}</h3>
+                    <button id="voteBtn-${candidate._id}">Vote</button>
+                </div>
+            `
+            container.appendChild(box) 
+            // let count = 0;
+
+            const HandleVote = document.getElementById(`voteBtn-${candidate._id}`)
+            const voteCount = document.getElementById(`countvote-${candidate._id}`)
+            
+            HandleVote.addEventListener('click', () => {
+            candidate.voteCount +=1;
+            voteCount.innerHTML = `<span>Vote:- </span>${candidate.voteCount}`;
+            // console.log(count)
+            fetch(`http://localhost:8000/api/candidate/${candidate._id}`, {
+                method: 'PUT',
+                headers: {
+
+                }
+            })
+
+    })
+        });
+    }
+
 </script>
 
 </html>

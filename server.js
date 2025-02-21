@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const User = require('./Models/user')
 const userRoutes = require('./routes/route')
 const path = require('path')
+const Candidate = require('./Models/candidate')
 
 const app = express()
 const PORT = 8000;
@@ -21,7 +22,15 @@ app.get('/', (req, res)=>{
     return res.render('home')
 })
 
+app.get('/api/candidate', async(req, res)=>{
+    const candidates = await Candidate.find()
+    res.json(candidates)
+})
 
+app.get('/api/user', async(req, res) => {
+    const user = await User.find();
+    res.json(user)
+})
 app.listen(PORT, () => {
     console.log(`Serve at port:- ${PORT}`)
 })
