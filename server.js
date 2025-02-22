@@ -31,6 +31,18 @@ app.get('/api/user', async(req, res) => {
     const user = await User.find();
     res.json(user)
 })
+
+app.get('/api/candidate/:id', async(req, res)=> {
+    try{
+    const candidate = await Candidate.findById(req.params.id)
+    if(!candidate){
+        return res.json({message: "NO CANDIDATE EXISTS"})
+    }
+    return res.json(candidate)
+    } catch (error) {
+        return res.json({message: "Server error"})
+    }
+})
 app.listen(PORT, () => {
     console.log(`Serve at port:- ${PORT}`)
 })

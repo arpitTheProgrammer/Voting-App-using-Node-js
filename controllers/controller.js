@@ -68,9 +68,28 @@ const HandleCandidateLogin = async (req, res) => {
     candidates.isLoggedIn = true;
     return res.json({ message: "LOGIN SUCCESS" })
 }
+
+const HandleUpdateVote = async (req, res) => {
+    try{
+        const {voteCount} = req.body;
+        const candidate = await Candidate.findByIdAndUpdate(
+            req.params.id,
+            {voteCount },
+            {new: true}
+        )
+        if(!candidate){
+            return res.json({message: "Candidate Not Exists"})
+        }
+        return res.json(candidate)
+    } catch(error) {
+        console.error(error)
+        return res.json({message: "Server error"})
+    }
+}
 module.exports = {
     HandleSaveUser,
     HandleLogin,
     HandleCandidateRegister,
-    HandleCandidateLogin
+    HandleCandidateLogin,
+    HandleUpdateVote
 }

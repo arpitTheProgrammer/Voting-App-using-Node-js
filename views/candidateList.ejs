@@ -94,7 +94,7 @@
     fetch('http://localhost:8000/api/candidate')
     .then(response => response.json())
     .then(data => {
-        candidate = data;
+        candidates = data;
         renderData()
     })
     .catch(error => console.log("ERROR to Fetch"))
@@ -114,7 +114,7 @@
     const renderData = () => {
         const container = document.getElementById('container-candidate')
         container.innerHTML = ''
-        candidate.forEach(candidate => {
+        candidates.forEach(candidate => {
             const box = document.createElement('div')
             box.classList.add('boxes')
             box.innerHTML = `
@@ -132,15 +132,22 @@
             const voteCount = document.getElementById(`countvote-${candidate._id}`)
             
             HandleVote.addEventListener('click', () => {
-            candidate.voteCount +=1;
-            voteCount.innerHTML = `<span>Vote:- </span>${candidate.voteCount}`;
-            // console.log(count)
-            fetch(`http://localhost:8000/api/candidate/${candidate._id}`, {
-                method: 'PUT',
-                headers: {
+                candidate.voteCount += 1; // Increase the vote count
+                voteCount.innerHTML = `<span>Vote:- </span>${candidate.voteCount}`;
 
-                }
+                // Update the vote count on the server  
+                fetch(`http://localhost:8000/api/candidate/${candidate._id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json' // Corrected Content-Type header
+                    },
+                    body: JSON.stringify({ voteCount: candidate.voteCount }) // Stringified the body
+                })
+            .then( response => response.json())
+            .then(data => {
+                console.log('Vote count updated ', data)
             })
+            .catch(error => console.log('Error to update ', error))
 
     })
         });

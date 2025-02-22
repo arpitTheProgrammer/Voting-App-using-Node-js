@@ -1,7 +1,7 @@
 const express = require('express')
 const User = require("../Models/user")
 // const User = require("../Models/user")
-const {HandleSaveUser, HandleLogin, HandleCandidateRegister, HandleCandidateLogin} = require('../controllers/controller')
+const {HandleSaveUser, HandleLogin, HandleCandidateRegister, HandleCandidateLogin, HandleUpdateVote} = require('../controllers/controller')
 // import User from '../Models/user.js'
 
 
@@ -31,4 +31,6 @@ router.get('/candidate-login', (req, res) => {
 })
 
 router.post('/candidate-login', HandleCandidateLogin)
+
+router.put('/api/candidate/:id', HandleUpdateVote)
 module.exports = router;
