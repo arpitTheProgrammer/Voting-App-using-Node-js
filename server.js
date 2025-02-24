@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const User = require('./Models/user')
 const userRoutes = require('./routes/route')
+
 const path = require('path')
 const Candidate = require('./Models/candidate')
 
@@ -16,7 +17,7 @@ app.set('view engine', 'ejs')
 app.set('views', path.resolve("./views"))
 
 app.use('/', userRoutes)
-app.use(express.json());
+app.use(express.json());    
 app.use(express.urlencoded({extended: true}))
 app.get('/', (req, res)=>{
     return res.render('home')
@@ -41,6 +42,18 @@ app.get('/api/candidate/:id', async(req, res)=> {
     return res.json(candidate)
     } catch (error) {
         return res.json({message: "Server error"})
+    }
+})
+
+app.get('/api/user/:id', async(req, res)=> {
+    try {
+        const user = await User.findById(req.params.id)
+        if(!user){
+            return res.json({message: "User Not Exist"})
+        }
+        return res.json(user)
+    } catch(error){
+        return res.json({message: "Server Error"})
     }
 })
 app.listen(PORT, () => {

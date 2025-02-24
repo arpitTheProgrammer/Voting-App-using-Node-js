@@ -79,28 +79,42 @@
         <button id="HandleLogout" class="logout">Logout</button>
     </div>
     <div id="container-candidate" class="container-after-login">
-        
+
     </div>
 </body>
 <script>
     const HandleLogout = document.getElementById('HandleLogout')
 
 
-    HandleLogout.addEventListener('click', () => {
+    HandleLogout.addEventListener('click', async() => {
         window.location.href = 'login'
+        try {
+            const response = await fetch(`http://localhost:8000/api/user`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({isLoggedin: false})
+            })
+            const data = await response.json()
+            console.log(data)
+
+        } catch(error){
+            console.log("ERROR TO UPDATE")
+        }
     })
 
     // Fetching Candidate Data
     fetch('http://localhost:8000/api/candidate')
-    .then(response => response.json())
-    .then(data => {
-        candidates = data;
-        renderData()
-    })
-    .catch(error => console.log("ERROR to Fetch"))
+        .then(response => response.json())
+        .then(data => { 
+            candidates = data;
+            renderData()
+        })
+        .catch(error => console.log("ERROR to Fetch"))
 
     // Fetchhing Voter data
-    const voterData = async() => {
+    const voterData = async () => {
         try {
             const response = await fetch('http://localhost:8000/api/user')
             const data = await response.json()
@@ -125,16 +139,15 @@
                     <button id="voteBtn-${candidate._id}">Vote</button>
                 </div>
             `
-            container.appendChild(box) 
+            container.appendChild(box)
             // let count = 0;
 
             const HandleVote = document.getElementById(`voteBtn-${candidate._id}`)
             const voteCount = document.getElementById(`countvote-${candidate._id}`)
-            
+
             HandleVote.addEventListener('click', () => {
                 candidate.voteCount += 1; // Increase the vote count
                 voteCount.innerHTML = `<span>Vote:- </span>${candidate.voteCount}`;
-
                 // Update the vote count on the server  
                 fetch(`http://localhost:8000/api/candidate/${candidate._id}`, {
                     method: 'PUT',
@@ -143,13 +156,20 @@
                     },
                     body: JSON.stringify({ voteCount: candidate.voteCount }) // Stringified the body
                 })
-            .then( response => response.json())
-            .then(data => {
-                console.log('Vote count updated ', data)
-            })
-            .catch(error => console.log('Error to update ', error))
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Vote count updated ', data)
+                    })
+                    .catch(error => console.log('Error to update ', error))
 
-    })
+                    // try{
+                    //     const userResponse = await fetch('http://localhost:8000/api/user')
+                    //     const users = userResponse.json()
+
+                    //     const currentUser = users.find(user => user.isLoggedin)
+                    // }
+
+            })
         });
     }
 

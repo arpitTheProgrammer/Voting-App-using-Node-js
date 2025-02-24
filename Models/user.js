@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema({
     isLoggedin: {
         type: Boolean,
         default: false
-    }
+    }   
 }, {timestamps: true});
 
 const User = mongoose.model("User", userSchema);

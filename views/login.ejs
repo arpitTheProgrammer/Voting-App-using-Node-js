@@ -63,16 +63,16 @@
     <%- include('./partials/Navbar.ejs')%>
     <div class="container-login">
         <h1 class="login-head">Login</h1>
-        <form action="/login" method="POST">
+        <form id="loginForm" action="/login" method="POST">
             <div class="email-section">
                 <label for="exampleInputEmail" class="email-label" >Email</label>
-                <input name="email" type="email" placeholder="Enter email" class="email-input">
+                <input id="handleEmail" name="email" type="email" placeholder="Enter email" class="email-input">
             </div>
             <div class="pass-section">
                 <label for="examplePassword">Password</label>
-                <input name="password" type="password" placeholder="Enter Password" class="pass-input">
+                <input id="password" name="password" type="password" placeholder="Enter Password" class="pass-input">
             </div>
-            <button class="btn-submit" type="submit">Login</button>
+            <button id="loginBtn" class="btn-submit" type="submit">Login</button>
         </form>
     </div>
     <div class="registerBtn">
@@ -86,5 +86,38 @@
     registerBtn.addEventListener('click', () => {
         window.location.href = "/signup"
     })
+
+    // const LoginForm = document.getElementById('loginForm')
+
+
+    // LoginForm.addEventListener('submit', async()=> {
+    //     event.preventDefault()
+    //     const handleEmail = document.getElementById('handleEmail').value
+    //     const password = document.getElementById('password').value
+    //     try{
+    //         const response = await fetch('http://localhost:8000/api/user')
+    //         const users = await response.json()
+    //         const user = users.find(data => data.email === handleEmail && data.password === password)
+    //         console.log(user)
+    //         if(user){
+    //             fetch(`http://localhost:8000/api/user/${user._id}`, {
+    //                 method: 'PUT',
+    //                 headers: {
+    //                     'Content-Type': 'application/json'
+    //                 },
+    //                 body: JSON.stringify({isLoggedin: true})
+    //             })
+    //             .then(response => response.json())
+    //             .then(data => {
+    //                 console.log(data);
+                    
+    //             })
+    //             .catch(error => console.log("UNABLE TO FETCH"))
+    //         }
+    //     } catch(error) {
+    //         console.log("ERROR TO FETCH DATA")
+    //     }
+    // })
+
 </script>
 </html>
