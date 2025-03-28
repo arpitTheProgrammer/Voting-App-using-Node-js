@@ -1,7 +1,7 @@
 const express = require('express')
 const User = require("../Models/user")
 // const User = require("../Models/user")
-const {HandleSaveUser, HandleLogin, HandleCandidateRegister, HandleCandidateLogin, HandleUpdateVote, HandleUpdateActiveStatus} = require('../controllers/controller')
+const {HandleSaveUser, HandleLogin, HandleCandidateRegister, HandleCandidateLogin, HandleUpdateVote, HandleUpdateActiveStatus, HandleDeleteData} = require('../controllers/controller')
 // import User from '../Models/user.js'
 
 

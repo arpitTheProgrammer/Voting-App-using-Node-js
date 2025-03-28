@@ -1,5 +1,6 @@
     const User = require('../Models/user')
     const Candidate = require('../Models/candidate')
+    const {setUser, getUser} = require('../service/auth')
 
     const HandleSaveUser = async (req, res) => {
         try {
@@ -40,7 +41,7 @@
         }
     }
     const HandleLogin = async (req, res) => {
-        const { email, password } = req.body;
+        const { email, password, isVoted, fullName  } = req.body;
         console.log(email, password)
         const user = await User.findOne({ email })
         if (!user) {
@@ -52,6 +53,9 @@
         }
         user.isLoggedin = true;
         await user.save()
+
+        const token = setUser(user)
+        res.cookie("uid", token)
         return res.render('candidateList')
     }
 
@@ -98,6 +102,8 @@
             return res.json({message: "USER NOT UPDATE"})
         }
     }
+
+
     module.exports = {
         HandleSaveUser,
         HandleLogin,
